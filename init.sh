@@ -34,38 +34,38 @@ echo "  address 10.55.0.1" >> /etc/network/interfaces.d/usb0
 echo "  netmask 255.255.255.248" >> /etc/network/interfaces.d/usb0
 
 ### create /root/usb.sh
-touch /root/usb
-echo "#!/bin/bash" >> /root/usb
-echo "cd /sys/kernel/config/usb_gadget/" >> /root/usb
-echo "mkdir -p pi4" >> /root/usb
-echo "cd pi4" >> /root/usb
-echo "echo 0x1d6b > idVendor # Linux Foundation" >> /root/usb
-echo "echo 0x0104 > idProduct # Multifunction Composite Gadget" >> /root/usb
-echo "echo 0x0100 > bcdDevice # v1.0.0" >> /root/usb
-echo "echo 0x0200 > bcdUSB # USB2" >> /root/usb
-echo "echo 0xEF > bDeviceClass" >> /root/usb
-echo "echo 0x02 > bDeviceSubClass" >> /root/usb
-echo "echo 0x01 > bDeviceProtocol" >> /root/usb
-echo "mkdir -p strings/0x409" >> /root/usb
-echo "echo \"fedcba9876543211\" > strings/0x409/serialnumber" >> /root/usb
-echo "echo \"Ben Hardill\" > strings/0x409/manufacturer" >> /root/usb
-echo "echo \"PI4 USB Device\" > strings/0x409/product" >> /root/usb
-echo "mkdir -p configs/c.1/strings/0x409" >> /root/usb
-echo "echo \"Config 1: ECM network\" > configs/c.1/strings/0x409/configuration" >> /root/usb
-echo "echo 250 > configs/c.1/MaxPower" >> /root/usb
-echo "# Add functions here" >> /root/usb
-echo "# see gadget configurations below" >> /root/usb
-echo "# End functions" >> /root/usb
-echo "mkdir -p functions/ecm.usb0" >> /root/usb
-echo "HOST=\"00:dc:c8:f7:75:14\" # \"HostPC\"" >> /root/usb
-echo "SELF=\"00:dd:dc:eb:6d:a1\" # \"BadUSB\"" >> /root/usb
-echo "echo $HOST > functions/ecm.usb0/host_addr" >> /root/usb
-echo "echo $SELF > functions/ecm.usb0/dev_addr" >> /root/usb
-echo "ln -s functions/ecm.usb0 configs/c.1/" >> /root/usb
-echo "udevadm settle -t 5 || :" >> /root/usb
-echo "ls /sys/class/udc > UDC" >> /root/usb
-echo "ifup usb0" >> /root/usb
-echo "service dnsmasq restart" >> /root/usb
+touch /root/usb.sh
+echo "#!/bin/bash" >> /root/usb.sh
+echo "cd /sys/kernel/config/usb_gadget/" >> /root/usb.sh
+echo "mkdir -p pi4" >> /root/usb.sh
+echo "cd pi4" >> /root/usb.sh
+echo "echo 0x1d6b > idVendor # Linux Foundation" >> /root/usb.sh
+echo "echo 0x0104 > idProduct # Multifunction Composite Gadget" >> /root/usb.sh
+echo "echo 0x0100 > bcdDevice # v1.0.0" >> /root/usb.sh
+echo "echo 0x0200 > bcdUSB # USB2" >> /root/usb.sh
+echo "echo 0xEF > bDeviceClass" >> /root/usb.sh
+echo "echo 0x02 > bDeviceSubClass" >> /root/usb.sh
+echo "echo 0x01 > bDeviceProtocol" >> /root/usb.sh
+echo "mkdir -p strings/0x409" >> /root/usb.sh
+echo "echo \"fedcba9876543211\" > strings/0x409/serialnumber" >> /root/usb.sh
+echo "echo \"Ben Hardill\" > strings/0x409/manufacturer" >> /root/usb.sh
+echo "echo \"PI4 USB Device\" > strings/0x409/product" >> /root/usb.sh
+echo "mkdir -p configs/c.1/strings/0x409" >> /root/usb.sh
+echo "echo \"Config 1: ECM network\" > configs/c.1/strings/0x409/configuration" >> /root/usb.sh
+echo "echo 250 > configs/c.1/MaxPower" >> /root/usb.sh
+echo "# Add functions here" >> /root/usb.sh
+echo "# see gadget configurations below" >> /root/usb.sh
+echo "# End functions" >> /root/usb.sh
+echo "mkdir -p functions/ecm.usb0" >> /root/usb.sh
+echo "HOST=\"00:dc:c8:f7:75:14\" # \"HostPC\"" >> /root/usb.sh
+echo "SELF=\"00:dd:dc:eb:6d:a1\" # \"BadUSB\"" >> /root/usb.sh
+echo "echo $HOST > functions/ecm.usb0/host_addr" >> /root/usb.sh
+echo "echo $SELF > functions/ecm.usb0/dev_addr" >> /root/usb.sh
+echo "ln -s functions/ecm.usb0 configs/c.1/" >> /root/usb.sh
+echo "udevadm settle -t 5 || :" >> /root/usb.sh
+echo "ls /sys/class/udc > UDC" >> /root/usb.sh
+echo "ifup usb0" >> /root/usb.sh
+echo "service dnsmasq restart" >> /root/usb.sh
 
 ### make /root/usb.sh executable
 chmod +x /root/usb.sh
