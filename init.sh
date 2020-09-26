@@ -59,8 +59,8 @@ echo "# End functions" >> /root/usb.sh
 echo "mkdir -p functions/ecm.usb0" >> /root/usb.sh
 echo "HOST=\"00:dc:c8:f7:75:14\" # \"HostPC\"" >> /root/usb.sh
 echo "SELF=\"00:dd:dc:eb:6d:a1\" # \"BadUSB\"" >> /root/usb.sh
-echo "echo $HOST > functions/ecm.usb0/host_addr" >> /root/usb.sh
-echo "echo $SELF > functions/ecm.usb0/dev_addr" >> /root/usb.sh
+echo "echo \$HOST > functions/ecm.usb0/host_addr" >> /root/usb.sh
+echo "echo \$SELF > functions/ecm.usb0/dev_addr" >> /root/usb.sh
 echo "ln -s functions/ecm.usb0 configs/c.1/" >> /root/usb.sh
 echo "udevadm settle -t 5 || :" >> /root/usb.sh
 echo "ls /sys/class/udc > UDC" >> /root/usb.sh
